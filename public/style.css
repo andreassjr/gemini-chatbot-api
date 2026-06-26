@@ -11,12 +11,147 @@ body {
   min-height: 100vh;
   padding: 20px;
   color: #fff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  width: 140px;
+  height: 48px;
+  top: 90px;
+  opacity: 0.9;
+  animation: cloud-drift 24s linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 54px;
+  height: 54px;
+  left: 10px;
+  top: -6px;
+  box-shadow: 0 0 0 10px rgba(255,255,255,0.8);
+}
+
+.cloud::after {
+  width: 72px;
+  height: 72px;
+  right: 10px;
+  top: -16px;
+  box-shadow: 0 0 0 10px rgba(255,255,255,0.8);
+}
+
+.cloud span {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  border-radius: 50%;
+  left: 54px;
+  top: 4px;
+  box-shadow: 0 0 0 10px rgba(255,255,255,0.8);
+}
+
+.cloud-two {
+  top: 180px;
+  transform: scale(0.8);
+  animation-duration: 30s;
+  opacity: 0.75;
+}
+
+.cloud-three {
+  top: 260px;
+  transform: scale(0.65);
+  animation-duration: 36s;
+  opacity: 0.8;
+}
+
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(-180px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 220px));
+  }
+}
+
+.pipe {
+  position: absolute;
+  width: 70px;
+  height: 95px;
+  background: linear-gradient(180deg, #36d75b 0%, #1e8d38 100%);
+  border: 4px solid #0f421f;
+  border-radius: 12px 12px 0 0;
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,0.2), 0 10px 0 rgba(0,0,0,0.2);
+  animation: pipe-bob 3.2s ease-in-out infinite;
+}
+
+.pipe::before {
+  content: '';
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 26px;
+  background: inherit;
+  border: 4px solid #0f421f;
+  border-radius: 10px;
+}
+
+.pipe-left {
+  left: 4%;
+  bottom: 5%;
+  transform: rotate(-2deg);
+}
+
+.pipe-center {
+  left: 50%;
+  bottom: -2%;
+  transform: translateX(-50%);
+  height: 118px;
+  width: 76px;
+  animation-duration: 4s;
+}
+
+.pipe-right {
+  right: 4%;
+  bottom: 5%;
+  transform: rotate(2deg);
+  animation-delay: 1s;
+}
+
+@keyframes pipe-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .container {
   max-width: 700px;
   margin: 0 auto;
   background: linear-gradient(180deg, #ffeb3b 0%, #ffd700 100%);
+  position: relative;
+  z-index: 2;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 
